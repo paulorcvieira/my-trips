@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import * as S from 'styles/components/LinkWrapper'
+import * as S from './styles'
 
 type LinkWrapperProps = {
   href: string
