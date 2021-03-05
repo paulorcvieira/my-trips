@@ -76,9 +76,9 @@ export default function Place({ place }: PlaceProps) {
           />
 
           <S.Gallery>
-            {place.gallery.map((image, index) => (
+            {place.gallery.map((image) => (
               <Image
-                key={`photo-${index}`}
+                key={image.id}
                 src={image.url}
                 alt={place.name}
                 width={image.width}

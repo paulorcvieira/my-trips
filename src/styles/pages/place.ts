@@ -26,6 +26,8 @@ export const Body = styled.div`
     margin-bottom: ${theme.sizes.large};
 
     p {
+      text-align: justify;
+      text-justify: inter-word;
       margin-bottom: ${theme.sizes.medium};
     }
   `}
@@ -36,26 +38,30 @@ export const Gallery = styled.div`
     display: grid;
     grid-gap: ${theme.sizes.medium};
 
+    // Skeleton
     img {
-      background: #f6f7f8;
       background-image: linear-gradient(
-        to right,
-        #f6f7f8 0%,
-        #edeef1 20%,
-        #f6f7f8 40%,
-        #edeef1 60%,
-        #f6f7f8 100%
+        -90deg,
+        #e7edf1 0%,
+        #f8f8f8 50%,
+        #e7edf1 100%
       );
-      background-size: 80rem 14rem;
-      animation: placeholderShimmer 1s linear infinite forwards;
+      background-size: 400% 400%;
+      animation: shimmer 1.2s ease-in-out infinite;
+      border: 0;
+      border-radius: 9px;
 
-      @keyframes placeholderShimmer {
+      @keyframes shimmer {
         0% {
-          background-position: -40rem 0;
+          background-position: 0% 0%;
         }
         100% {
-          background-position: 40rem 0;
+          background-position: -135% 0%;
         }
+      }
+
+      &.white {
+        background-image: linear-gradient(-90deg, #fff 0%, #e7edf1 50%, #fff 100%);
       }
     }
   `}
