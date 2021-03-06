@@ -1,16 +1,36 @@
 import dynamic from 'next/dynamic'
 import { MapProps } from 'components/Map'
 import { NextSeo } from 'next-seo'
-// import { useTheme } from 'styled-components';
+// import { useTheme } from 'styled-components'
 
-import { InfoOutline } from 'styles/icons'
+import useToasts from 'contexts/toast'
+
+import * as S from 'styles/pages/home'
+
 import LinkWrapper from 'components/LinkWrapper'
 import client from 'graphql/client'
 import { GET_PLACES } from 'graphql/queries'
 import { GetPlacesQuery } from 'graphql/generated/graphql'
 
 export default function Home({ places }: MapProps) {
-  // const { colors } = useTheme();
+  const { addToast } = useToasts()
+  // const { colors } = useTheme()
+
+  if (places) {
+    addToast({
+      type: 'success',
+      title: 'Pontos de Interesse',
+      description: 'Pontos de interesse carregados com sucesso.'
+    })
+  } else {
+    addToast({
+      type: 'error',
+      title: 'Pontos de Interesse',
+      description:
+        'Não foi possível carregar os pontos de interesse, verifique sua conexão.'
+    })
+  }
+
   const Map = dynamic(() => import('components/Map'), { ssr: false })
 
   return (
@@ -36,7 +56,7 @@ export default function Home({ places }: MapProps) {
         }}
       />
       <LinkWrapper href="/about">
-        <InfoOutline size={32} aria-label="About" />
+        <S.IconInfo aria-label="About" />
       </LinkWrapper>
       <Map places={places} />
     </>

@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen } from 'utils/test-utils'
 
 import Map from 'components/Map'
 
@@ -17,21 +17,21 @@ describe('<Map />', () => {
   it('should render with the marker in correct place', () => {
     const place = {
       id: '1',
-      name: 'Ponta Grossa',
-      slug: 'pg',
+      name: 'Ponta Grossa, Paraná',
+      slug: 'ponta-grossa-parana',
       location: {
-        latitude: 0,
-        longitude: 0
+        latitude: -25.0949322,
+        longitude: -50.1545956
       }
     }
 
     const placeTwo = {
       id: '2',
-      name: 'Paris',
-      slug: 'fr',
+      name: 'Paris, França',
+      slug: 'paris-franca',
       location: {
-        latitude: 45,
-        longitude: -15
+        latitude: 48.856614,
+        longitude: 2.3522219
       }
     }
 

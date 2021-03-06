@@ -2,6 +2,7 @@ import { GetStaticProps } from 'next'
 import { useRouter } from 'next/dist/client/router'
 import { NextSeo } from 'next-seo'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
 import client from 'graphql/client'
 import { GET_PLACES, GET_PLACE_BY_SLUG } from 'graphql/queries'
@@ -10,6 +11,9 @@ import { GetPlacesQuery, GetPlaceBySlugQuery } from 'graphql/generated/graphql'
 import * as S from 'styles/pages/place'
 
 import LinkWrapper from 'components/LinkWrapper'
+import LoadingTitle from 'components/Shimmer/LoadingTitle'
+import LoadingDescription from 'components/Shimmer/LoadingDescription'
+import LoadingImage from 'components/Shimmer/LoadingImage'
 
 import { CloseOutline } from 'styles/icons'
 
@@ -34,6 +38,13 @@ type PlaceProps = {
 
 export default function Place({ place }: PlaceProps) {
   const router = useRouter()
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 300)
+  })
 
   // retorna um loading, qualquer coisa enquanto esta sendo criado
   if (router.isFallback) return null
@@ -69,23 +80,33 @@ export default function Place({ place }: PlaceProps) {
 
       <S.Wrapper>
         <S.Container>
-          <S.Heading>{place.name}</S.Heading>
+          {isLoading ? <LoadingTitle /> : <S.Heading>{place.name}</S.Heading>}
 
-          <S.Body
-            dangerouslySetInnerHTML={{ __html: place.description?.html || '' }}
-          />
+          {isLoading ? (
+            <LoadingDescription />
+          ) : (
+            <S.Body
+              dangerouslySetInnerHTML={{
+                __html: place.description?.html || ''
+              }}
+            />
+          )}
 
           <S.Gallery>
-            {place.gallery.map((image) => (
-              <Image
-                key={image.id}
-                src={image.url}
-                alt={place.name}
-                width={image.width}
-                height={image.height}
-                quality={65}
-              />
-            ))}
+            {isLoading ? (
+              <LoadingImage />
+            ) : (
+              place.gallery.map((image) => (
+                <Image
+                  key={image.id}
+                  src={image.url}
+                  alt={place.name}
+                  width={image.width}
+                  height={image.height}
+                  quality={65}
+                />
+              ))
+            )}
           </S.Gallery>
         </S.Container>
       </S.Wrapper>

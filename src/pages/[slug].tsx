@@ -1,13 +1,16 @@
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/dist/client/router'
+import { useEffect, useState } from 'react'
 
 import client from 'graphql/client'
 import { GET_PAGES, GET_PAGES_BY_SLUG } from 'graphql/queries'
 import { GetPagesQuery, GetPagesBySlugQuery } from 'graphql/generated/graphql'
 
-import * as S from 'styles/pages/about'
+import * as S from 'styles/pages/page'
 
 import LinkWrapper from 'components/LinkWrapper'
+import LoadingTitle from 'components/Shimmer/LoadingTitle'
+import LoadingDescription from 'components/Shimmer/LoadingDescription'
 
 import { CloseOutline } from 'styles/icons'
 
@@ -23,21 +26,37 @@ type PageProps = {
 
 export default function Page({ heading, body }: PageProps) {
   const router = useRouter()
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 300)
+  })
 
   // retorna um loading, qualquer coisa enquanto esta sendo criado
   if (router.isFallback) return null
 
   return (
-    <S.Content>
+    <>
       <LinkWrapper href="/">
         <CloseOutline size={32} aria-label="Close" />
       </LinkWrapper>
 
-      <S.Heading>{heading}</S.Heading>
-      <S.Body>
-        <div dangerouslySetInnerHTML={{ __html: body }} />
-      </S.Body>
-    </S.Content>
+      <S.Wrapper>
+        <S.Container>
+          {isLoading ? <LoadingTitle /> : <S.Heading>{heading}</S.Heading>}
+
+          {isLoading ? (
+            <LoadingDescription />
+          ) : (
+            <S.Body>
+              <div dangerouslySetInnerHTML={{ __html: body }} />
+            </S.Body>
+          )}
+        </S.Container>
+      </S.Wrapper>
+    </>
   )
 }
 

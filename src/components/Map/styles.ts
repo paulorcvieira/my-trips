@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+const isProd = process.env.NODE_ENV === 'production'
 
 export const MapWrapper = styled.div`
   ${({ theme }) => css`
@@ -8,5 +9,7 @@ export const MapWrapper = styled.div`
     .leaflet-container {
       background-color: ${theme.colors.background};
     }
+
+    ${() => isProd ? '.leaflet-bottom.leaflet-right { display: none }' : ''}
   `}
 `

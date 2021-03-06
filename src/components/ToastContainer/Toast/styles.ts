@@ -25,6 +25,7 @@ export const Container = styled(motion.aside)<ToastProps>`
 
     > div {
       flex: 1;
+
       > p {
         margin-top: 4px;
         font-size: 14px;

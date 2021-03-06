@@ -1,36 +1,36 @@
 const dark = {
   colors: {
-    background: '#06092b',
+    background: '#131314',
     white: '#eeeeee',
-    highlight: '#7c62d4', // '#e20e8d',
+    highlight: '#8257e6',
     black: '#27242e',
     shape: '#3c3847',
-    grayHard: '#6e6359',
+    grayHard: '#212124',
     gray: '#9e948a',
     orange: '#FF9000',
     inputs: '#211e29',
     error: '#c53030',
     toasts: {
       info: {
-        color: '#3172b7',
-        background: '#ebf8ff',
+        color: '#27242e',
+        background: '#90cdf4',
       },
       success: {
-        color: '#2e656a',
-        background: '#e6fffa',
+        color: '#27242e',
+        background: '#9ae6b4',
       },
       error: {
-        color: '#c53030',
-        background: '#fddede',
+        color: '#27242e',
+        background: '#feb2b2',
       },
       warning: {
-        color: '#FF9000',
-        background: '#fcf4e4',
+        color: '#27242e',
+        background: '#fbd38d',
       },
     },
   },
   sizes: {
-    container: '100rem',
+    container: '80rem',
     small: '1.5rem',
     medium: '3rem',
     large: '5rem',
