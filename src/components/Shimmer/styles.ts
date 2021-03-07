@@ -1,12 +1,8 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-export const Container = styled.section`
+export const Container = styled.div`
   margin-top: 8px;
   width: 100%;
-
-  @media (min-width: 1180px) {
-    margin-top: 16px;
-  }
 
   > div {
     padding: 50px 40px 50px 12px;
@@ -87,4 +83,36 @@ export const Container = styled.section`
       }
     }
   }
-`;
+`
+
+export const Panel = styled.div`
+  background: linear-gradient(to left, rgb(45, 38, 74), rgb(32, 32, 36));
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 3px rgba(0, 0, 0, 0.2);
+
+  &.no-shadow {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.02), 0 2px 3px rgba(0, 0, 0, 0.05);
+  }
+`
+
+export const Skeleton = styled.div`
+  background-image: linear-gradient(
+    -90deg,
+    #e7edf1 0%,
+    #f8f8f8 50%,
+    #e7edf1 100%
+  );
+  background-size: 400% 400%;
+  animation: shimmer 1.2s ease-in-out infinite;
+  @keyframes shimmer {
+    0% {
+      background-position: 0% 0%;
+    }
+    100% {
+      background-position: -135% 0%;
+    }
+  }
+  &.white {
+    background-image: linear-gradient(-90deg, #fff 0%, #e7edf1 50%, #fff 100%);
+  }
+`

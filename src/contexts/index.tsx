@@ -1,7 +1,7 @@
 import { PropsWithChildren } from 'react'
 
-import { AuthProvider } from './auth'
 import { ToastProvider } from './toast'
+import { AuthProvider } from './auth'
 
 const AppProvider = ({ children }: PropsWithChildren<unknown>) => (
   <ToastProvider>

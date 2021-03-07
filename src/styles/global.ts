@@ -1,5 +1,5 @@
-import { createGlobalStyle, css } from 'styled-components';
-import { tint, shade } from 'polished';
+import { createGlobalStyle, css } from 'styled-components'
+import { tint, shade } from 'polished'
 
 export default createGlobalStyle`
   ${({ theme }) => css`
@@ -25,7 +25,7 @@ export default createGlobalStyle`
       -webkit-font-smoothing: antialiased !important;
       -moz-osx-font-smoothing: grayscale;
       background: ${theme.colors.background};
-      color: ${theme.colors.white};
+      color: ${theme.colors.secondary};
     }
 
     body,
@@ -83,7 +83,7 @@ export default createGlobalStyle`
 
     p {
       font-size: 2rem;
-      line-height: ${theme.sizes.medium}
+      line-height: ${theme.sizes.medium};
     }
 
     button {
@@ -99,4 +99,4 @@ export default createGlobalStyle`
       padding: 0;
     }
   `}
-`;
+`

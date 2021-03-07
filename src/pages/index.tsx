@@ -1,9 +1,6 @@
 import dynamic from 'next/dynamic'
 import { MapProps } from 'components/Map'
 import { NextSeo } from 'next-seo'
-// import { useTheme } from 'styled-components'
-
-import useToasts from 'contexts/toast'
 
 import * as S from 'styles/pages/home'
 
@@ -12,25 +9,11 @@ import client from 'graphql/client'
 import { GET_PLACES } from 'graphql/queries'
 import { GetPlacesQuery } from 'graphql/generated/graphql'
 
-export default function Home({ places }: MapProps) {
-  const { addToast } = useToasts()
-  // const { colors } = useTheme()
+interface Props extends MapProps {
+  toggleTheme(): void
+}
 
-  if (places) {
-    addToast({
-      type: 'success',
-      title: 'Pontos de Interesse',
-      description: 'Pontos de interesse carregados com sucesso.'
-    })
-  } else {
-    addToast({
-      type: 'error',
-      title: 'Pontos de Interesse',
-      description:
-        'Não foi possível carregar os pontos de interesse, verifique sua conexão.'
-    })
-  }
-
+export default function Home({ places, toggleTheme }: Props) {
   const Map = dynamic(() => import('components/Map'), { ssr: false })
 
   return (
@@ -55,10 +38,12 @@ export default function Home({ places }: MapProps) {
           site_name: 'My Trips'
         }}
       />
-      <LinkWrapper href="/about">
+
+      <LinkWrapper href="/about" toggleTheme={toggleTheme}>
         <S.IconInfo aria-label="About" />
       </LinkWrapper>
-      <Map places={places} />
+
+      <Map places={places} toggleTheme={toggleTheme} />
     </>
   )
 }

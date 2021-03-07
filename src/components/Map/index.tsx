@@ -1,5 +1,6 @@
 import { useRouter } from 'next/dist/client/router'
 import { MapContainer, TileLayer, Marker, MapConsumer } from 'react-leaflet'
+import { useTheme } from 'styled-components'
 
 import * as S from './styles'
 
@@ -19,13 +20,17 @@ export type MapProps = {
 
 const MAPBOX_API_KEY = process.env.NEXT_PUBLIC_MAPBOX_API_KEY
 const MAPBOX_USERID = process.env.NEXT_PUBLIC_MAPBOX_USERID
-const MAPBOX_STYLEID = process.env.NEXT_PUBLIC_MAPBOX_STYLEID
+const MAPBOX_STYLEID_DARK = process.env.NEXT_PUBLIC_MAPBOX_STYLEID_DARK
+const MAPBOX_STYLEID_LIGHT = process.env.NEXT_PUBLIC_MAPBOX_STYLEID_LIGHT
 
 const CustomTileLayer = () => {
+  const { title } = useTheme()
+  const mapStyle = title === 'dark' ? MAPBOX_STYLEID_DARK : MAPBOX_STYLEID_LIGHT
+
   return MAPBOX_API_KEY ? (
     <TileLayer
       attribution='© <a href="https://apps.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      url={`https://api.mapbox.com/styles/v1/${MAPBOX_USERID}/${MAPBOX_STYLEID}/tiles/256/{z}/{x}/{y}@2x?access_token=${MAPBOX_API_KEY}`}
+      url={`https://api.mapbox.com/styles/v1/${MAPBOX_USERID}/${mapStyle}/tiles/256/{z}/{x}/{y}@2x?access_token=${MAPBOX_API_KEY}`}
     />
   ) : (
     <TileLayer
@@ -44,6 +49,7 @@ const Map = ({ places }: MapProps) => {
         center={[0, 0]}
         zoom={2}
         minZoom={2}
+        maxZoom={4}
         scrollWheelZoom
         style={{ height: '100%', width: '100%' }}
         maxBounds={[
@@ -62,6 +68,7 @@ const Map = ({ places }: MapProps) => {
             if (width < 768) {
               map.setMinZoom(1)
             }
+
             return null
           }}
         </MapConsumer>
@@ -80,7 +87,7 @@ const Map = ({ places }: MapProps) => {
                   router.push(`/place/${slug}`)
                 }
               }}
-            />
+            ></Marker>
           )
         })}
       </MapContainer>

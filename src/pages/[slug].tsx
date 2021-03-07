@@ -12,11 +12,13 @@ import LinkWrapper from 'components/LinkWrapper'
 import LoadingTitle from 'components/Shimmer/LoadingTitle'
 import LoadingDescription from 'components/Shimmer/LoadingDescription'
 
-import { CloseOutline } from 'styles/icons'
-
 type PageProps = {
   heading: string
   body: string
+}
+
+interface Props extends PageProps {
+  toggleTheme(): void
 }
 
 // getStaticPath => serve para gerar as urls em build time /about /trip/ponta-grossa
@@ -24,7 +26,7 @@ type PageProps = {
 // getServerSideProps => serve para buscar dados da página (props - runtime - toda requisição (bundle fica no server)
 // getInitialProps => serve para buscar dados da página (props) - runtime - toda requisição (bundle também vem para o client) - hydrate
 
-export default function Page({ heading, body }: PageProps) {
+export default function Page({ heading, body, toggleTheme }: Props) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
 
@@ -39,8 +41,8 @@ export default function Page({ heading, body }: PageProps) {
 
   return (
     <>
-      <LinkWrapper href="/">
-        <CloseOutline size={32} aria-label="Close" />
+      <LinkWrapper href="/" toggleTheme={toggleTheme}>
+        <S.IconClose aria-label="Close" />
       </LinkWrapper>
 
       <S.Wrapper>

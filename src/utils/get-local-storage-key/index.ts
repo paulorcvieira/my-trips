@@ -1,3 +1,3 @@
-import LOCAL_STORAGE_KEY from 'constants';
+import LOCAL_STORAGE_KEY from 'constants'
 
-export default (key: string) => `${LOCAL_STORAGE_KEY}:${key}`;
+export default (key: string) => `${LOCAL_STORAGE_KEY}:${key}`

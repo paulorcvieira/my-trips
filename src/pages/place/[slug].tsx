@@ -15,8 +15,6 @@ import LoadingTitle from 'components/Shimmer/LoadingTitle'
 import LoadingDescription from 'components/Shimmer/LoadingDescription'
 import LoadingImage from 'components/Shimmer/LoadingImage'
 
-import { CloseOutline } from 'styles/icons'
-
 type ImageProps = {
   id: string
   url: string
@@ -36,7 +34,11 @@ type PlaceProps = {
   }
 }
 
-export default function Place({ place }: PlaceProps) {
+interface Props extends PlaceProps {
+  toggleTheme(): void
+}
+
+export default function Place({ place, toggleTheme }: Props) {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(true)
 
@@ -74,8 +76,8 @@ export default function Place({ place }: PlaceProps) {
           ]
         }}
       />
-      <LinkWrapper href="/">
-        <CloseOutline size={32} aria-label="Go back to map" />
+      <LinkWrapper href="/" toggleTheme={toggleTheme}>
+        <S.IconClose aria-label="Go back to map" />
       </LinkWrapper>
 
       <S.Wrapper>

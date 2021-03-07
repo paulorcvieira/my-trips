@@ -1,11 +1,11 @@
-import styled, { css } from 'styled-components';
-import { motion } from 'framer-motion';
+import styled, { css } from 'styled-components'
+import { motion } from 'framer-motion'
 
-import { ToastType } from 'contexts/toast/types';
+import { ToastType } from 'contexts/toast/types'
 
 type ToastProps = {
-  type: ToastType;
-};
+  type: ToastType
+}
 
 export const Container = styled(motion.aside)<ToastProps>`
   ${({ theme, type }) => css`
@@ -57,4 +57,4 @@ export const Container = styled(motion.aside)<ToastProps>`
       margin-top: 12px;
     }
   `}
-`;
+`

@@ -1,5 +1,4 @@
-import { ReactElement } from 'react'
-import { useEffect } from 'react'
+import { ReactElement, useEffect } from 'react'
 
 import {
   AlertCircle,
