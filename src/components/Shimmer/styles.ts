@@ -86,7 +86,11 @@ export const Container = styled.div`
 `
 
 export const Panel = styled.div`
-  background: linear-gradient(to left, rgb(45, 38, 74), rgb(32, 32, 36));
+  background: linear-gradient(
+    to left,
+    ${({ theme }) => theme.colors.highlight},
+    rgb(32, 32, 36)
+  );
   border-radius: 2px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 2px 3px rgba(0, 0, 0, 0.2);
 
