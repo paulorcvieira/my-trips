@@ -43,7 +43,7 @@ export default function Home({ places, toggleTheme }: Props) {
         <S.IconInfo aria-label="About" />
       </LinkWrapper>
 
-      <Map places={places} toggleTheme={toggleTheme} />
+      <Map places={places} />
     </>
   )
 }
