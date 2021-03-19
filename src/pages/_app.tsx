@@ -24,6 +24,10 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           <AnimatePresence initial={false}>
             <>
               <Head>
+                <meta
+                  name="google-site-verification"
+                  content="91HXkCGqHC-l_kIYPurM2YAJ95PRPX_15YxmUi8Fehg"
+                />
                 <link rel="shortcut icon" href="/img/icon-512.png" />
                 <link rel="apple-touch-icon" href="/img/icon-512.png" />
                 <link rel="manifest" href="/manifest.json" />
